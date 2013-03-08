@@ -1,0 +1,19 @@
+{
+    "require": {
+        "behat/behat": "2.4.*@stable",
+        "guzzle/guzzle": "*"
+    },
+    "minimum-stability": "dev",
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "autoload": {
+    	"psr-0": {
+            "ckan":        "src/",
+            "ckan\\tests": "test/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit":   "3.7@stable"
+    }
+}
