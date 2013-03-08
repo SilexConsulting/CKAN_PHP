@@ -2,9 +2,8 @@
 namespace ckan\Test;
 
 use ckan\ckan\Ckan;
-use Guzzle\Http\Client as httpClient;
 
-class ckanTest extends \Guzzle\Tests\GuzzleTestCase
+class ckanTest extends \PHPUnit_Framework_TestCase
 {
 
 	function testClient(){
@@ -20,9 +19,11 @@ class ckanTest extends \Guzzle\Tests\GuzzleTestCase
     }
 
     function testThatCkanDatasetHasCorrectRegisterUri(){
-    	$httpClient = new httpClient("http://localhost");
-    	$this->setMockResponse($httpClient, "rest/dataset");
-    	$sut = new Ckan($httpClient);
+    	$httpClient = $this->getMock('Guzzle\Http\Client', array('get'));
+    	$httpClient->expects($this->once())
+                 ->method('get')
+                 ->with($this->equalTo('http://localhost/api/2/dataset'));
+     	$sut = new Ckan($httpClient);
     	$sut->dataset->lists();
     }
 }
