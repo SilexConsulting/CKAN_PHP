@@ -2,27 +2,26 @@
 
 namespace ckan\ckan;
 
-
-use nategood\httpful;
-
-class Client {
+class Ckan {
 
 	private $baseUri;
 	private $userName;
 	private $password;
 	private $apiKey;
 	private $apiVersion;
+	private $httpClient;
 	
 
 	const INVALID_PROPERTY = 101;
 	const INVALID_OP_CLONE_DATASET = 102;
 
 
-	public function __construct($baseUri, $userName='', $password='', $apiKey='', $apiVersion=2){
-		$this->baseUri = $baseUri;
+	public function __construct($httpClient, $userName='', $password='', $apiKey='', $apiVersion='2'){
+		$this->httpClient = $httpClient;
 		$this->userName = $userName;
 		$this->password = $password;
 		$this->apiKey = $apiKey;
+		$this->apiVersion = $apiVersion;
 	}
 
 
@@ -30,37 +29,40 @@ class Client {
 	 * as per http://docs.ckan.org/en/ckan-1.8/api-v2.html#model-api
 	*/
 	private $resources = array(
-		"Dataset Register" => "/rest/dataset",
-		"Dataset Entity" => "/rest/dataset/@dataset@",
-		"Group Register" => "/rest/group",
-		"Group Entity" => "/rest/group/@group@",
-		"Tag Register" => "/rest/tag",
-		"Tag Entity" => "/rest/tag/@tag@",
-		"Revision Register" => "/rest/revision",
-		"Revision Entity" => "/rest/revision/@revision@",
-		"License List" => "/rest/licenses",
+		"Dataset Register" => "rest/dataset",
+		"Dataset Entity" => "rest/dataset/@dataset@",
+		"Group Register" => "rest/group",
+		"Group Entity" => "rest/group/@group@",
+		"Tag Register" => "rest/tag",
+		"Tag Entity" => "rest/tag/@tag@",
+		"Revision Register" => "rest/revision",
+		"Revision Entity" => "rest/revision/@revision@",
+		"License List" => "rest/licenses",
 	);
 
 	private function getResourceUri($resource){
-
 		$params = $resource['parameters'];
-		return str_replace(array_keys($params), $params, $this->resources[$resource['name']]);
+		return str_replace(array_keys($params), $params, $this->resources[$resource["name"]]);
 
 	}
 
 	private function buildUri($resource){
-		return sprintf("%s/api/%d/%s", $this->baseUri, $this->apiVersion, $this->getResourceUri($resource));
+		return sprintf("api/%s/%s", $this->apiVersion, $this->getResourceUri($resource));
 	}
 
 	public function get($resource){
-		$uri = buildUrl($resource);
-		$response = Request::get($uri);
+
+		$uri = $this->buildUri($resource);
+
+		$response = $this->httpClient->get($uri);
+		print_r($this->httpClient);
+		return $response;
 	}
 
 	public function __get($name){
 	    switch ($name) {
 	 		case 'dataset':
-	 				return Dataset::getInstance($client);
+	 				return Dataset::getInstance($this);
 	 			break;
 	 		
 	 		default:
@@ -72,7 +74,7 @@ class Client {
 }
 
 class Dataset {
-	private $client;	
+	private $ckan;	
 	protected static $instance = null;
 
     protected function __construct(){
@@ -84,16 +86,18 @@ class Dataset {
     	throw new CkanInvalidOperation("Attempt to clone Dataset singleton object.", INVALID_OP_CLONE_DATASET);
     }
 
-    public static function getInstance($client)
+    public static function getInstance($ckan)
     {
         if (!isset(static::$instance)) {
             static::$instance = new static;
-            static::$instance->client = $client;
+            static::$instance->ckan = $ckan;
         }
         return static::$instance;
     }
 
     public function lists(){
+		$resource = array("name" => "Dataset Register", "parameters" => array());
+    	return $this->ckan->get($resource);
 
     }
 }
