@@ -1,7 +1,6 @@
 CKAN API PHP Client
 
-External libraries are required to use the CKAN client.  This software uses composer http://getcomposer.org/ to
-install an manage dependencies.
+External libraries are required to use the CKAN client.  This software uses composer http://getcomposer.org/ to install and manage dependencies.
 
 1) Composer is required to install all the dependencies.  To install composer, you need to run:
 	curl http://getcomposer.org/installer | php 
@@ -13,8 +12,7 @@ install an manage dependencies.
 	php composer.phar install
 	in the root of the project.
 
-3) CKAN PHP client uses a PSR-0 compliant autoloader (supplied by composer). In order to use the library, you should require
-vendor/autoload.php or user your own PSR-0 compliant autoloader.
+3) CKAN PHP client uses a PSR-0 compliant autoloader (supplied by composer). In order to use the library, you should require vendor/autoload.php or user your own PSR-0 compliant autoloader.
 
 To run the acceptance tests from the command line run:
 
