@@ -1,24 +1,28 @@
 CKAN API PHP Client
 
-No external libraries are required to use the CKAN client, but in order to run tests, 
-you need to install a couple of testing tools/libraries.
+External libraries are required to use the CKAN client.  This software uses composer http://getcomposer.org/ to
+install an manage dependencies.
 
-1) phpUnit is required to run the unit tests.  You can install this using pear by running:
-	pear install phpunit/PHPUnit
-	If you don't have pear installed, you will see an error.
-	See: http://www.phpunit.de/manual/3.0/en/installation.html for details.  
-
-2) Composer is required to install Behat.  To install composer, you need to run:
+1) Composer is required to install all the dependencies.  To install composer, you need to run:
 	curl http://getcomposer.org/installer | php 
 	in the root of the project.
 	You may get an error saying that you need to disable detect_unicode to install composer.  If this happens, add
 	detect_unicode=off to your php.ini
 
-3) Behat is required to run acceptance tests.  Install Behat by running:
+2) To install the project dependencies, you should run:
 	php composer.phar install
 	in the root of the project.
 
-To run the tests from the command line run:
+3) CKAN PHP client uses a PSR-0 compliant autoloader (supplied by composer). In order to use the library, you should require
+vendor/autoload.php or user your own PSR-0 compliant autoloader.
+
+To run the acceptance tests from the command line run:
 
 bin/behat 
+
+To run the unit tests from the command line run:
+
+bin/phpunit
+
+
 
