@@ -10,6 +10,8 @@ class Ckan {
 	private $apiKey;
 	private $apiVersion;
 	private $httpClient;
+
+	private $dataset;
 	
 
 	const INVALID_PROPERTY = 101;
@@ -55,14 +57,22 @@ class Ckan {
 		$uri = $this->buildUri($resource);
 
 		$response = $this->httpClient->get($uri);
-		print_r($this->httpClient);
 		return $response;
+	}
+
+	private function getDataset(){
+
+        if (!isset($this->dataset)) {
+            $this->dataset = new Dataset($this);
+        }
+        return $this->dataset;
+
 	}
 
 	public function __get($name){
 	    switch ($name) {
 	 		case 'dataset':
-	 				return Dataset::getInstance($this);
+	 				return $this->getDataset();
 	 			break;
 	 		
 	 		default:
@@ -77,24 +87,14 @@ class Dataset {
 	private $ckan;	
 	protected static $instance = null;
 
-    protected function __construct(){
-        //This is a singleton
+    public function __construct($ckan){
+        $this->ckan = $ckan;
     }
 
     protected function __clone()
     {
     	throw new CkanInvalidOperation("Attempt to clone Dataset singleton object.", INVALID_OP_CLONE_DATASET);
     }
-
-    public static function getInstance($ckan)
-    {
-        if (!isset(static::$instance)) {
-            static::$instance = new static;
-            static::$instance->ckan = $ckan;
-        }
-        return static::$instance;
-    }
-
     public function lists(){
 		$resource = array("name" => "Dataset Register", "parameters" => array());
     	return $this->ckan->get($resource);
