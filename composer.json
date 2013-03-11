@@ -1,6 +1,5 @@
 {
     "require": {
-        "behat/behat": "2.4.*@stable",
         "guzzle/guzzle": "*"
     },
     "minimum-stability": "dev",
@@ -14,6 +13,7 @@
         }
     },
     "require-dev": {
+        "behat/behat": "2.4.*@stable",
         "phpunit/phpunit":   "3.7@stable"
     }
 }
