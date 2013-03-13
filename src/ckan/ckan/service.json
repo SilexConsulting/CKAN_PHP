@@ -1,0 +1,86 @@
+{
+    "name": "Ckan",
+    "apiVersion": "2",
+    "baseUrl": "http://ckan.net/api/2/",
+    "description": "CKAN is a knowledge archive",
+    "operations": {
+        "GetDatasets": {
+            "httpMethod": "GET",
+            "uri": "/rest/dataset",
+            "summary": "Gets a list of datasets",
+            "responseClass": "GetDatasetsOutput"
+        },
+        "GetDataset": {
+            "httpMethod": "GET",
+            "uri": "/rest/datset/{id}",
+            "summary": "Retrieves a dataset",
+            "responseClass": "GetDatasetOutput",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Dataset reference to retrieve",
+                    "required": true
+                }
+            }
+       }
+    },
+    "models": {
+        "GetDatasetsOutput": {
+            "type": "object",
+            "properties": {
+                "datasets": {
+                    "description": "list of datasets as a JSON document",
+                    "type": "string",
+                    "location": "json"
+                }
+            }
+        },
+        "GetDatasetOutput": {
+            "type": "object",
+            "properties": {
+                "license_title": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "license": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "license_id": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "id": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "author": {
+                    "location": "json",
+                    "type": "string" 
+                },
+                "resources": {
+                    "location": "json",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "content_length": {
+                                "location": "json",
+                                "type": "string"
+                            },
+                            "resource_group_id": {
+                                "location": "json",
+                                "type": "string"
+                            },
+                            "url": {
+                                "location": "json",
+                                "type": "string"
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
