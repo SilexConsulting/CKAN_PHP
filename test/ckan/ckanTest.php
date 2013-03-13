@@ -1,30 +1,28 @@
 <?php 
 namespace ckan\Test;
 
-use ckan\ckan\Ckan;
-use Guzzle\Http\Client;
+use ckan\ckan\CkanClient;
 
-class ckanTest extends \PHPUnit_Framework_TestCase
+class ckanTest extends \Guzzle\Tests\GuzzleTestCase
 {
 
 	function testClient(){
-		$httpClient = $this->getMock('Client', array('get'));
-    	$sut = new Ckan($httpClient);
-    	$this->assertInstanceOf("ckan\ckan\Ckan", $sut);
+        $sut = $this->getServiceBuilder()->get('test.ckan');
+    	$this->assertInstanceOf("ckan\ckan\CkanClient", $sut);
     }
 
-    function testThatCkanReturnsDataset(){
-    	$httpClient = $this->getMock('Client', array('get'));
-    	$sut = new Ckan($httpClient);
-    	$this->assertInstanceOf("ckan\ckan\Dataset", $sut->dataset);
+    function testThatDatasetRegistryReturnsCorrectData(){
+        $sut = $this->getServiceBuilder()->get('test.ckan');
+        $this->setMockResponse($sut, array(
+                "dataset_registry_success",
+            )
+        );
+        $model = $sut->GetDatasets();
+        $datasets = $model->toArray();
+        $this->assertEquals(2, count($datasets));
+        $this->assertEquals("00055483-dd79-4ada-b4be-eb54eeaec19b", $datasets[0]);
+        $this->assertEquals("0046a95c-56b0-4bb9-9451-9071fbdcec15", $datasets[1]);
     }
+    
 
-    function testThatCkanDatasetHasCorrectRegisterUri(){
-    	$httpClient = $this->getMock('Client', array('get'));
-    	$httpClient->expects($this->once())
-                 ->method('get')
-                 ->with($this->equalTo('api/2/rest/dataset'));
-     	$sut = new Ckan($httpClient);
-    	$sut->dataset->lists();
-    }
 }
