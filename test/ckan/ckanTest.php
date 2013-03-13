@@ -24,5 +24,19 @@ class ckanTest extends \Guzzle\Tests\GuzzleTestCase
         $this->assertEquals("0046a95c-56b0-4bb9-9451-9071fbdcec15", $datasets[1]);
     }
     
-
+    function testThatDatasetGetReturnsData(){
+    	$sut = $this->getServiceBuilder()->get('test.ckan');
+    	$this->setMockResponse($sut, array(
+    			"dataset_get_success",
+    		)
+    	);
+    	$model = $sut->GetDataset(array("id"=>"boo"));
+    	$dataset = $model->toArray();
+    	$this->assertEquals("UK Open Government Licence (OGL)", $dataset['license_title']);
+    	$this->assertEquals("00055483-dd79-4ada-b4be-eb54eeaec19b", $dataset['id']);
+    	$this->assertEquals(1, count($dataset['resources']));
+    	$this->assertEquals("http://opendata.s3.amazonaws.com/public-weighbridges.xls", $dataset['resources']['url']);
+    	
+    }
+    
 }
