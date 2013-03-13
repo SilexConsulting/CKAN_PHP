@@ -22,14 +22,33 @@
                     "required": true
                 }
             }
-       }
+        },
+        "GetGroups": {
+            "httpMethod": "GET",
+            "uri": "/rest/group",
+            "summary": "Retrieves a list of groups",
+            "responseClass": "GetGroupsOutput"
+        },
+        "GetGroup": {
+            "httpMethod": "GET",
+            "uri": "/rest/group/{group_id}",
+            "summary": "Retrieves a group",
+            "responseClass": "GetGroupOutput",
+            "parameters": {
+                "group_id": {
+                    "location": "uri",
+                    "description": "The id of the group to retrieve",
+                    "required": true
+                }
+            }
+        }   
     },
     "models": {
         "GetDatasetsOutput": {
             "type": "object",
             "properties": {
                 "datasets": {
-                    "description": "list of datasets as a JSON document",
+                    "description": "List of datasets as a JSON document",
                     "type": "string",
                     "location": "json"
                 }
@@ -81,6 +100,27 @@
                     }
                 }
             }
+        },
+        "GetGroupsOutput": {
+            "type": "object",
+            "properties": {
+                "groups": {
+                    "description": "List of all groups on CKAN",
+                    "type": "string",
+                    "location": "json"
+                    
+                }
+            }
+        },
+        "GetGroupOutput": {
+            "type": "object",
+            "properties": {
+                "group_id": {
+                    "location": "json",
+                    "type": "string"
+                }
+            }
         }
+        
     }
 }

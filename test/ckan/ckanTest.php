@@ -35,8 +35,30 @@ class ckanTest extends \Guzzle\Tests\GuzzleTestCase
     	$this->assertEquals("UK Open Government Licence (OGL)", $dataset['license_title']);
     	$this->assertEquals("00055483-dd79-4ada-b4be-eb54eeaec19b", $dataset['id']);
     	$this->assertEquals(1, count($dataset['resources']));
-    	$this->assertEquals("http://opendata.s3.amazonaws.com/public-weighbridges.xls", $dataset['resources']['url']);
+    	$this->assertEquals("http://opendata.s3.amazonaws.com/public-weighbridges.xls", $dataset['resources'][0]['url']);
     	
     }
     
+    function testThatGroupListReturnsData(){
+    	$sut = $this->getServiceBuilder()->get('test.ckan');
+    	$this->setMockResponse($sut, array(
+    			'group_list_success'
+    		)
+    	);
+    	$model = $sut->GetGroups();
+    	$groups = $model->toArray();
+    	$this->assertEquals(10, count($groups));
+    }
+    
+    function testThatGroupGetReturnsData(){
+    	$sut = $this->getServiceBuilder()->get('test.ckan');
+    	$this->setMockResponse($sut, array(
+    			'group_get_success'
+    	)
+    	);
+    	$model = $sut->GetGroup(array("group_id"=>"1234"));
+    	$group = $model->toArray();
+    	$this->assertEquals("user_d7180", $group["users"][0]["name"]);
+    	$this->assertEquals("2gether NHS Foundation Trust", $group["display_name"]);
+    }
 }

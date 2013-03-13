@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Date: Tue, 08 Sep 2012 13:37:00 GMT
+Content-Type: application/json
+Content-Length: 89
+Server: CKAN
+
+{"users": [{"openid": null, "about": null, "capacity": "editor", "name": "user_d7180", "created": "2012-06-28T20:06:30.061645", "email_hash": "bd3fb40f748cc3c9c7b6b7a4dffa461c", "number_of_edits": 8, "number_administered_packages": 0, "display_name": "2gether NHS Foundation Trust", "fullname": "2gether NHS Foundation Trust", "id": "44bfba7e-1ca9-4a27-b98a-b3cc1f1fcccb"}], "display_name": "2gether NHS Foundation Trust", "description": "", "title": "2gether NHS Foundation Trust", "created": "2012-06-27T14:50:58.676856", "approval_status": "approved", "state": "active", "extras": {"contact-name": "", "contact-email": "", "website-url": "", "foi-web": "http://www.whatdotheyknow.com/body/2gether_nhs_foundation_trust", "foi-name": "", "abbreviation": "", "foi-email": "", "website-name": "", "contact-phone": "", "foi-phone": ""}, "image_url": "", "groups": [], "revision_id": "a1f4375a-4afe-4dad-88cd-03f2bd6adaaf", "packages": ["598c37fa-9d20-465a-988c-a6e31974493a"], "type": "publisher", "id": "f253ec11-900c-45da-86e0-4dd10f5f6b37", "tags": [], "name": "2gether-nhs-foundation-trust"}
