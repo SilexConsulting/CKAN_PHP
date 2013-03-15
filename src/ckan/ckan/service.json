@@ -41,7 +41,20 @@
                     "required": true
                 }
             }
-        }   
+        }, 
+        "GetRevisionSinceRevision": {
+            "httpMethod": "GET",
+            "uri": "api/search/revision?since_id={revision_id}",
+            "summary": "List revisions since revsion id.",
+            "responseClass": "GetRevisionsOutput",
+            "parameters": {
+                "revision_id": {
+                    "location": "uri",
+                    "description": "The start revision you want to list revsions after",
+                    "required": true
+                }
+            }
+        }
     },
     "models": {
         "GetDatasetsOutput": {
