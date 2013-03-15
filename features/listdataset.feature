@@ -7,3 +7,4 @@ Scenario:
 	Given I have set the client to use http://ckan.net/api as the base url
 	When I call the client->dataset->list method
 	Then I should see a list of results
+	And the results should include the fishes-of-texas dataset

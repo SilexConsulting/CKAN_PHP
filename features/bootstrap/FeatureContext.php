@@ -17,6 +17,8 @@ use ckan\ckan\client;
 
 require_once("vendor/autoload.php");
 
+
+
 /**
  * Features context.
  */
@@ -43,7 +45,15 @@ class FeatureContext extends BehatContext
     public function iHaveSetTheClientToUseHttpCkanNetApiAsTheBaseUrl()
     {
 
-       $this->ckanClient = new client("http://ckan.net/api/");
+       $this->ckanClient = Guzzle\Service\Builder\ServiceBuilder::factory(array(
+		'dev.ckan' => array(
+				'class' => 'ckan\ckan\CkanClient',
+				'params' => array(
+					'baseUrl' => 'http://www.ckan.net/'
+				)
+		)))->get('dev.ckan');
+       
+       
     }
 
     /**
@@ -51,7 +61,7 @@ class FeatureContext extends BehatContext
      */
     public function iCallTheClientDatasetListMethod()
     {
-        $this->result = $this->ckanClient->dataset->list();
+        $this->result = $this->ckanClient->GetDatasets();
     }
 
     /**
@@ -59,7 +69,15 @@ class FeatureContext extends BehatContext
      */
     public function iShouldSeeAListOfResults()
     {
-        throw new PendingException();
+         $datasets = $model->toArray();
+         assertGreaterThan(0, count($datasets));
     }
 
+    /**
+     * @Given /^the results should include the fishes-of-texas dataset$/
+     */
+    public function theResultsShouldIncludeTheFishesOfTexasDataset()
+    {
+        throw new PendingException();
+    }
 }
