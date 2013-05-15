@@ -1,18 +1,17 @@
 {
     "name": "Ckan",
     "apiVersion": "2",
-    "baseUrl": "http://ckan.net/api/2/",
     "description": "CKAN is a knowledge archive",
     "operations": {
         "GetDatasets": {
             "httpMethod": "GET",
-            "uri": "/rest/dataset",
+            "uri": "rest/dataset",
             "summary": "Gets a list of datasets",
             "responseClass": "GetDatasetsOutput"
         },
         "GetDataset": {
             "httpMethod": "GET",
-            "uri": "/rest/datset/{id}",
+            "uri": "rest/dataset/{id}",
             "summary": "Retrieves a dataset",
             "responseClass": "GetDatasetOutput",
             "parameters": {
@@ -25,13 +24,13 @@
         },
         "GetGroups": {
             "httpMethod": "GET",
-            "uri": "/rest/group",
+            "uri": "rest/group",
             "summary": "Retrieves a list of groups",
             "responseClass": "GetGroupsOutput"
         },
         "GetGroup": {
             "httpMethod": "GET",
-            "uri": "/rest/group/{group_id}",
+            "uri": "rest/group/{group_id}",
             "summary": "Retrieves a group",
             "responseClass": "GetGroupOutput",
             "parameters": {
@@ -44,7 +43,7 @@
         }, 
         "GetRevisionSinceRevision": {
             "httpMethod": "GET",
-            "uri": "api/search/revision?since_id={revision_id}",
+            "uri": "/api/search/revision?since_id={revision_id}",
             "summary": "List revisions since revsion id.",
             "responseClass": "GetRevisionsOutput",
             "parameters": {
