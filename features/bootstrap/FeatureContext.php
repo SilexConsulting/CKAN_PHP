@@ -49,7 +49,7 @@ class FeatureContext extends BehatContext
 		'dev.ckan' => array(
 				'class' => 'ckan\ckan\CkanClient',
 				'params' => array(
-					'baseUrl' => 'http://www.ckan.net/'
+					'baseUrl' => 'http://datahub.io/api/'
 				)
 		)))->get('dev.ckan');
        
