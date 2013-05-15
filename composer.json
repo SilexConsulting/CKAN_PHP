@@ -1,4 +1,6 @@
 {
+
+    "name": "silex/ckan_client",
     "require": {
         "guzzle/guzzle": "*"
     },
