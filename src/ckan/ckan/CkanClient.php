@@ -31,7 +31,7 @@ class CkanClient extends Client {
         $required = array('baseUrl');
         $config = Collection::fromConfig($config, $default, $required);
 
-        $client = new self($config->get('base_url'), $config);
+        $client = new self($config->get('baseUrl'), $config);
         // Attach a service description to the client
         $description = ServiceDescription::factory(__DIR__ . '/service.json');
         $client->setDescription($description);
