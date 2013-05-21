@@ -3,6 +3,19 @@
     "apiVersion": "2",
     "description": "CKAN is a knowledge archive",
     "operations": {
+        "GetRevision": {
+            "httpMethod": "GET",
+            "uri": "rest/revision/{id}",
+            "summary": "Retrieves a revision",
+            "responseClass": "GetRevisionOutput",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "Revision reference to retrieve",
+                    "required": true
+                }
+            }
+        },
         "GetDatasets": {
             "httpMethod": "GET",
             "uri": "rest/dataset",
@@ -40,7 +53,7 @@
                     "required": true
                 }
             }
-        }, 
+        },
         "GetRevisionSinceRevision": {
             "httpMethod": "GET",
             "uri": "/api/search/revision?since_id={revision_id}",
@@ -56,6 +69,48 @@
         }
     },
     "models": {
+
+
+        "GetRevisionOutput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "packages": {
+                    "location": "json",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "location": "json",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+
+                "groups": {
+                    "location": "json",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "location": "json",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        },
+
+
         "GetDatasetsOutput": {
             "type": "object",
             "properties": {
@@ -87,7 +142,7 @@
                 },
                 "author": {
                     "location": "json",
-                    "type": "string" 
+                    "type": "string"
                 },
                 "resources": {
                     "location": "json",
@@ -120,7 +175,7 @@
                     "description": "List of all groups on CKAN",
                     "type": "string",
                     "location": "json"
-                    
+
                 }
             }
         },
@@ -133,6 +188,6 @@
                 }
             }
         }
-        
+
     }
 }
