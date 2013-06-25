@@ -1,14 +1,14 @@
 <?php 
-namespace ckan\Test;
+namespace Silex\ckan\Test;
 
-use ckan\ckan\CkanClient;
+use Silex\ckan\CkanClient;
 
 class ckanTest extends \Guzzle\Tests\GuzzleTestCase
 {
 
 	function testClient(){
         $sut = $this->getServiceBuilder()->get('test.ckan');
-    	$this->assertInstanceOf("ckan\ckan\CkanClient", $sut);
+    	$this->assertInstanceOf("Silex\ckan\CkanClient", $sut);
     }
 
     function testThatDatasetRegistryReturnsCorrectData(){

@@ -10,8 +10,8 @@
     },
     "autoload": {
     	"psr-0": {
-            "ckan":        "src/",
-            "ckan\\tests": "test/"
+            "Silex\\ckan":        "src/",
+            "Silex\\ckan\\tests": "test/"
         }
     },
     "require-dev": {

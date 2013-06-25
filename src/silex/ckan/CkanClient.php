@@ -1,6 +1,6 @@
 <?php
 
-namespace ckan\ckan;
+namespace Silex\ckan;
 
 
 use Guzzle\Common\Collection;

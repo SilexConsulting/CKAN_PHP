@@ -13,7 +13,7 @@ use Behat\Gherkin\Node\PyStringNode,
 //   require_once 'PHPUnit/Autoload.php';
 //   require_once 'PHPUnit/Framework/Assert/Functions.php';
 //
-use ckan\ckan\client;
+use Silex\ckan\client;
 
 require_once("vendor/autoload.php");
 
@@ -47,7 +47,7 @@ class FeatureContext extends BehatContext
 
        $this->ckanClient = Guzzle\Service\Builder\ServiceBuilder::factory(array(
 		'dev.ckan' => array(
-				'class' => 'ckan\ckan\CkanClient',
+				'class' => 'Silex\ckan\CkanClient',
 				'params' => array(
 					'baseUrl' => 'http://datahub.io/api/'
 				)
