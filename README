@@ -12,7 +12,7 @@ External libraries are required to use the CKAN client.  This software uses comp
 	php composer.phar install
 	in the root of the project.
 
-3) CKAN PHP client uses a PSR-0 compliant autoloader (supplied by composer). In order to use the library, you should require vendor/autoload.php or user your own PSR-0 compliant autoloader.
+3) CKAN PHP client uses a PSR-0 compliant autoloader (supplied by composer). In order to use the library, you should require vendor/autoload.php or use your own PSR-0 compliant autoloader.
 
 To run the acceptance tests from the command line run:
 
