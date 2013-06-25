@@ -38,6 +38,7 @@ class FeatureContext extends BehatContext
 
     private $ckanClient;
     private $result;
+    private $datasets;
 
     /**
      * @Given /^I have set the client to use http:\/\/ckan\.net\/api as the base url$/
@@ -69,8 +70,8 @@ class FeatureContext extends BehatContext
      */
     public function iShouldSeeAListOfResults()
     {
-         $datasets = $model->toArray();
-         assertGreaterThan(0, count($datasets));
+         $this->datasets = $this->result->toArray();
+         assert(0 < count($this->datasets));
     }
 
     /**
@@ -78,6 +79,6 @@ class FeatureContext extends BehatContext
      */
     public function theResultsShouldIncludeTheFishesOfTexasDataset()
     {
-        throw new PendingException();
+        assert( in_array('fishes-of-texas', $this->datasets));
     }
 }
