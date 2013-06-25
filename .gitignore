@@ -1,4 +1,6 @@
 ./composer.phar
+composer.lock
 vendor/*
 bin/*
 .DS_Store
+.idea
