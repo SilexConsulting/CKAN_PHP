@@ -26,12 +26,16 @@ class CkanClient extends Client {
     {
         $default = array(
             'baseUrl' => '{scheme}://{username}.test.com/',
-            'scheme'   => 'https'
+            'scheme'  => 'https',
+            'apiKey'  => ''
         );
         $required = array('baseUrl');
         $config = Collection::fromConfig($config, $default, $required);
-
         $client = new self($config->get('baseUrl'), $config);
+        if (!empty($config['apiKey'])){
+            $client->defaultHeaders->set('X-CKAN-API-Key', $config['apiKey']);
+        }
+
         // Attach a service description to the client
         $description = ServiceDescription::factory(__DIR__ . '/service.json');
         $client->setDescription($description);
