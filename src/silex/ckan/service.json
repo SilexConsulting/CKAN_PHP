@@ -5,7 +5,7 @@
     "operations": {
         "GetRevision": {
             "httpMethod": "GET",
-            "uri": "api/2/rest/revision/{id}",
+            "uri": "2/rest/revision/{id}",
             "summary": "Retrieves a revision",
             "responseClass": "GetRevisionOutput",
             "parameters": {
@@ -18,13 +18,13 @@
         },
         "GetDatasets": {
             "httpMethod": "GET",
-            "uri": "api/2/rest/dataset",
+            "uri": "2/rest/dataset",
             "summary": "Gets a list of datasets",
             "responseClass": "GetDatasetsOutput"
         },
         "GetDataset": {
             "httpMethod": "GET",
-            "uri": "api/2/rest/dataset/{id}",
+            "uri": "2/rest/dataset/{id}",
             "summary": "Retrieves a dataset",
             "responseClass": "GetDatasetOutput",
             "parameters": {
@@ -37,13 +37,13 @@
         },
         "GetGroups": {
             "httpMethod": "GET",
-            "uri": "api/2/rest/group",
+            "uri": "2/rest/group",
             "summary": "Retrieves a list of groups",
             "responseClass": "GetGroupsOutput"
         },
         "GetGroup": {
             "httpMethod": "GET",
-            "uri": "api/2/rest/group/{id}",
+            "uri": "2/rest/group/{id}",
             "summary": "Retrieves a group",
             "responseClass": "GetGroupOutput",
             "parameters": {
@@ -56,7 +56,7 @@
         },
         "GetRevisionSinceRevision": {
             "httpMethod": "GET",
-            "uri": "api/search/revision?since_id={revision_id}",
+            "uri": "search/revision?since_id={revision_id}",
             "summary": "List revisions since revsion id.",
             "responseClass": "GetRevisionsOutput",
             "parameters": {
@@ -69,7 +69,7 @@
         },
         "PublisherShow": {
             "httpMethod": "GET",
-            "uri": "api/action/publisher_show?id={id}",
+            "uri": "action/publisher_show?id={id}",
             "summary": "Retrieves publisher details",
             "responseClass": "PublisherShowOutput",
             "parameters": {
@@ -142,3 +142,4 @@
 
     }
 }
+
