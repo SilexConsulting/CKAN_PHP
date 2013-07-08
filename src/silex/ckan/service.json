@@ -67,6 +67,19 @@
                 }
             }
         },
+        "GetRevisionSinceTime": {
+            "httpMethod": "GET",
+            "uri": "search/revision?since_time={date_time}",
+            "summary": "List revisions since time.",
+            "responseClass": "GetRevisionsOutput",
+            "parameters": {
+                "date_time": {
+                    "location": "uri",
+                    "description": "Date and time (Y-m-dTH:i:s) you want to list revsions after",
+                    "required": true
+                }
+            }
+        },
         "PublisherShow": {
             "httpMethod": "GET",
             "uri": "action/publisher_show?id={id}",
