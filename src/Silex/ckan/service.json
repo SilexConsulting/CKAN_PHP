@@ -105,6 +105,9 @@
                 }
             }
         },
+        "GetRevisionsOutput": {
+            "type": "object"
+        },        
         "GetRevisionOutput": {
             "type": "object",
             "properties": {
