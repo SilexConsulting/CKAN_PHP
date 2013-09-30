@@ -35,6 +35,11 @@
                 }
             }
         },
+        "GetDatasetCount": {
+            "httpMethod": "GET",
+            "uri": "util/dataset-count",
+            "summary": "Retrieves total number of datasets."
+        },
         "GetGroups": {
             "httpMethod": "GET",
             "uri": "2/rest/group",
@@ -107,7 +112,7 @@
         },
         "GetRevisionsOutput": {
             "type": "object"
-        },        
+        },
         "GetRevisionOutput": {
             "type": "object",
             "properties": {
@@ -158,4 +163,3 @@
 
     }
 }
-
