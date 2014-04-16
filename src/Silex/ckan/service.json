@@ -111,7 +111,13 @@
             }
         },
         "GetRevisionsOutput": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "id": {
+                    "location": "json",
+                    "type": "string"
+                }
+            }
         },
         "GetRevisionOutput": {
             "type": "object",
