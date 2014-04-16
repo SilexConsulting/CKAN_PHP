@@ -5,7 +5,7 @@
     "operations": {
         "GetRevision": {
             "httpMethod": "GET",
-            "uri": "2/rest/revision/{id}",
+            "uri": "3/action/revision_show?id={id}",
             "summary": "Retrieves a revision",
             "responseClass": "GetRevisionOutput",
             "parameters": {
@@ -18,19 +18,32 @@
         },
         "GetDatasets": {
             "httpMethod": "GET",
-            "uri": "2/rest/dataset",
+            "uri": "3/action/package_list",
             "summary": "Gets a list of datasets",
             "responseClass": "GetDatasetsOutput"
         },
         "GetDataset": {
             "httpMethod": "GET",
-            "uri": "2/rest/dataset/{id}",
+            "uri": "3/action/package_show?id={id}",
             "summary": "Retrieves a dataset",
             "responseClass": "GetDatasetOutput",
             "parameters": {
                 "id": {
                     "location": "uri",
                     "description": "Dataset reference to retrieve",
+                    "required": true
+                }
+            }
+        },
+        "GetUser": {
+            "httpMethod": "GET",
+            "uri": "3/action/user_show?id={id}",
+            "summary": "Retrieves a user",
+            "responseClass": "GetUserOutput",
+            "parameters": {
+                "id": {
+                    "location": "uri",
+                    "description": "User ID to retrieve",
                     "required": true
                 }
             }
@@ -42,13 +55,13 @@
         },
         "GetGroups": {
             "httpMethod": "GET",
-            "uri": "2/rest/group",
+            "uri": "3/action/organization_list",
             "summary": "Retrieves a list of groups",
             "responseClass": "GetGroupsOutput"
         },
         "GetGroup": {
             "httpMethod": "GET",
-            "uri": "2/rest/group/{id}",
+            "uri": "3/action/organization_show?id={id}",
             "summary": "Retrieves a group",
             "responseClass": "GetGroupOutput",
             "parameters": {
@@ -111,20 +124,22 @@
             }
         },
         "GetRevisionsOutput": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "location": "json",
-                    "type": "string"
-                }
-            }
+            "type": "object"
         },
         "GetRevisionOutput": {
             "type": "object",
             "properties": {
-                "id": {
+                "help": {
                     "location": "json",
                     "type": "string"
+                },
+                "success": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "result": {
+                    "location": "json",
+                    "type": "object"
                 }
             }
         },
@@ -141,17 +156,52 @@
         "GetDatasetOutput": {
             "type": "object",
             "properties": {
-                "id": {
+                "help": {
                     "location": "json",
                     "type": "string"
+                },
+                "success": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "result": {
+                    "location": "json",
+                    "type": "object"
                 }
             }
         },
+        "GetUserOutput": {
+            "type": "object",
+            "properties": {
+                "help": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "success": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "result": {
+                    "location": "json",
+                    "type": "object"
+                }
+            }
+        },
+
         "GetGroupsOutput": {
             "type": "object",
             "properties": {
                 "groups": {
                     "description": "List of all groups on CKAN",
+                    "location": "json",
+                    "type": "string"
+                }
+            }
+        },
+ 	"GetRevisionsOutput": {
+            "type": "object",
+            "properties": {
+                "id": {
                     "location": "json",
                     "type": "string"
                 }
