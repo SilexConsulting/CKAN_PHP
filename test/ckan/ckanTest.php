@@ -56,9 +56,19 @@ class ckanTest extends \Guzzle\Tests\GuzzleTestCase
     			'group_get_success'
     	)
     	);
-    	$model = $sut->GetGroup(array("group_id"=>"1234"));
+    	$model = $sut->GetGroup(array("id"=>"1234"));
     	$group = $model->toArray();
     	$this->assertEquals("user_d7180", $group["users"][0]["name"]);
     	$this->assertEquals("2gether NHS Foundation Trust", $group["display_name"]);
+    }
+
+    function testThatWeCanSearchForPackages(){
+        $sut = $this->getServiceBuilder()->get('test.ckan');
+        $this->setMockResponse($sut, array(
+                'package_search_success'
+        ));
+        $model = $sut->PackageSearch(array("q"=>"somestring"));
+        $results = $model->toArray();
+        $this->assertArrayHasKey('results', $results);
     }
 }
