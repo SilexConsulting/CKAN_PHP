@@ -110,6 +110,19 @@
                     "required": true
                 }
             }
+        },
+        "PackageSearch": {
+            "httpMethod": "GET",
+            "uri": "action/package_search?q={q}",
+            "summary": "Searches for packages satisfying a given search criteria.\n This action accepts solr search query parameters (details below), and returns a dictionary of results, including dictized datasets that match the search criteria, a search count and also facet information.",
+            "responseClass": "PackageSearchResult",
+            "parameters": {
+                "q": {
+                    "location": "uri",
+                    "description": "The solr query. Optional. Default: \"*:*\"",
+                    "required": false
+                }
+            }
         }
     },
 
@@ -215,7 +228,15 @@
                     "type": "string"
                 }
             }
+        },
+        "PackageSearchResult": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "location": "json",
+                    "type": "int"
+                }
+            }
         }
-
     }
 }
