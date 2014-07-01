@@ -4,4 +4,15 @@ Content-Type: application/json
 Content-Length: 89
 Server: CKAN
 
-{"count": 2, "results": [ "test1" , "test2" ], "search_facets": {"tags": {"items": [{"count": 1, "display_name": "tolstoy", "name": "tolstoy"}, {"count": 2, "display_name": "russian", "name": "russian"}]}}}
+{
+    "count": 2,
+    "results": [ "test1" , "test2" ],
+    "search_facets": {
+            "tags": {
+                "items": [
+                    {"count": 1, "display_name": "tolstoy", "name": "tolstoy"},
+                    {"count": 2, "display_name": "russian", "name": "russian"}
+                ]
+            }
+    }
+}
