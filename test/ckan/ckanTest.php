@@ -71,4 +71,20 @@ class ckanTest extends \Guzzle\Tests\GuzzleTestCase
         $results = $model->toArray();
         $this->assertArrayHasKey('results', $results);
     }
+
+  /**
+   * @When /^I call the get\.package_search method with a query of police$/
+   */
+  public function iCallTheGetPackageSearchMethodWithAQueryOfPolice()
+  {
+    throw new PendingException();
+  }
+
+  /**
+   * @Given /^the search results should include the hellenic-police dataset$/
+   */
+  public function theSearchResultsShouldIncludeTheHellenicPoliceDataset()
+  {
+    throw new PendingException();
+  }
 }
