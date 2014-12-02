@@ -55,9 +55,16 @@
         },
         "GetGroups": {
             "httpMethod": "GET",
-            "uri": "3/action/organization_list",
+            "uri": "3/action/organization_list?all_fields={all_fields}",
             "summary": "Retrieves a list of groups",
-            "responseClass": "GetGroupsOutput"
+            "responseClass": "GetGroupsOutput",
+            "parameters": {
+              "all_fields": {
+                "location": "uri",
+                "description": "(boolean) – return group dictionaries instead of just names. Only core fields are returned - get some more using the include_* options. Returning a list of packages is too expensive, so the packages property for each group is deprecated, but there is a count of the packages in the package_count property. (optional, default: False)",
+                "required": false
+              }
+            }
         },
         "GetGroup": {
             "httpMethod": "GET",
@@ -146,6 +153,24 @@
                     "sentAs" : "Content-Type"
                 }
             }
+        },
+        "PackageUpdate": {
+          "httpMethod": "POST",
+          "uri": "action/package_update?id={id}",
+          "summary": "Update a dataset (package).",
+          "responseClass": "CkanApiOutput",
+          "parameters": {
+            "data": {
+              "location": "body"
+            },
+            "content-type": {
+              "location": "header",
+              "static": true,
+              "required" : true,
+              "default" : "application/json",
+              "sentAs" : "Content-Type"
+            }
+          }
         },
         "PackageDelete": {
             "httpMethod": "POST",
@@ -301,7 +326,7 @@
                 }
             }
         },
- 	    "GetRevisionsOutput": {
+       "GetRevisionsOutput": {
             "type": "object",
             "properties": {
                 "id": {
