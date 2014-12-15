@@ -36,7 +36,7 @@
         },
         "GetDataset": {
             "httpMethod": "GET",
-            "uri": "3/action/package_show?id={id}",
+            "uri": "3/action/package_show?id={id}&use_default_schema={use_default_schema}",
             "summary": "Retrieves a dataset",
             "responseClass": "GetDatasetOutput",
             "parameters": {
@@ -44,6 +44,11 @@
                     "location": "uri",
                     "description": "Dataset reference to retrieve",
                     "required": true
+                },
+                "use_default_schema": {
+                  "location": "uri",
+                  "description": "use default package schema instead of a custom schema defined with an IDatasetForm plugin (default: False)",
+                  "required": false
                 }
             }
         },
@@ -158,6 +163,11 @@
                     "location": "query",
                     "description": "The facet query passed to SoLR.",
                     "required": false
+                },
+                "rows": {
+                  "location": "query",
+                  "description": "The number of matching rows to return.",
+                  "required": false
                 }
             }
         },

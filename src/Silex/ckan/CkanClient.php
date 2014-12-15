@@ -7,7 +7,7 @@ use Guzzle\Common\Collection;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
 
-class CkanClient extends Client {	
+class CkanClient extends Client {
 
     /**
      * Factory method to create a new CkanClient
