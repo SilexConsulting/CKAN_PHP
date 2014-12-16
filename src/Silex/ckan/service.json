@@ -20,13 +20,13 @@
           "httpMethod": "GET",
           "uri": "3/action/status_show",
           "summary": "Return a dictionary with information about the site’s configuration.",
-          "responseClass": "StatusShowOutput"
+          "responseClass": "CkanApiOutput"
         },
         "SiteRead": {
           "httpMethod": "GET",
           "uri": "3/action/site_read",
           "summary": "Kind of ping function",
-          "responseClass": "SiteReadOutput"
+          "responseClass": "CkanApiOutput"
         },
         "GetDatasets": {
             "httpMethod": "GET",
@@ -64,6 +64,25 @@
                     "required": true
                 }
             }
+        },
+        "GetOrganizationsUserIsMemberOf": {
+          "httpMethod": "GET",
+          "uri": "3/action/organization_list_for_user?permission={permission}",
+          "summary": "Retrieves a user",
+          "responseClass": "CkanApiOutput",
+          "parameters": {
+            "permission": {
+              "location": "uri",
+              "description": "(String) the permission the user has against the returned organizations, for example 'read' or 'create_dataset'",
+              "required": false
+            }
+          }
+        },
+        "GetGroupsUserCanEdit": {
+          "httpMethod": "GET",
+          "uri": "3/action/group_list_authz",
+          "summary": "Retrieves a user",
+          "responseClass": "CkanApiOutput"
         },
         "GetDatasetCount": {
             "httpMethod": "GET",
