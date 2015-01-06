@@ -147,6 +147,24 @@
                 }
             }
         },
+        "PackageUpdate": {
+            "httpMethod": "POST",
+            "uri": "action/package_update",
+            "summary": "Updates a CKAN Pacakage.",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
+                }
+            }
+        },
         "PackageDelete": {
             "httpMethod": "POST",
             "uri": "action/package_delete",
