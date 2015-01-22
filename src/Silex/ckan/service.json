@@ -185,7 +185,12 @@
                 },
                 "rows": {
                   "location": "query",
-                  "description": "The number of matching rows to return.",
+                  "description": "(int) The number of matching rows to return.",
+                  "required": false
+                },
+                "start": {
+                  "location": "query",
+                  "description": "(int) The offset in the complete result for where the set of returned datasets should begin.",
                   "required": false
                 }
             }
