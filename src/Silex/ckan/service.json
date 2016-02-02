@@ -98,6 +98,12 @@
                 }
             }
         },
+        "GetIssues": {
+            "httpMethod": "GET",
+            "uri": "3/action/issue_search",
+            "summary": "Gets a list of issues",
+            "responseClass": "GetIssuesOutput"
+        },
         "PublisherShow": {
             "httpMethod": "GET",
             "uri": "action/publisher_show?id={id}",
@@ -288,6 +294,16 @@
                 "result": {
                     "location": "json",
                     "type": "object"
+                }
+            }
+        },
+        "GetIssuesOutput": {
+            "type": "object",
+            "properties": {
+                "issues": {
+                    "description": "List of issues as a JSON document",
+                    "type": "string",
+                    "location": "json"
                 }
             }
         },
