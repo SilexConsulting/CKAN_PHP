@@ -98,6 +98,12 @@
                 }
             }
         },
+        "GetIssues": {
+            "httpMethod": "GET",
+            "uri": "3/action/issue_search",
+            "summary": "Gets a list of issues",
+            "responseClass": "GetIssuesOutput"
+        },
         "PublisherShow": {
             "httpMethod": "GET",
             "uri": "action/publisher_show?id={id}",
@@ -108,6 +114,127 @@
                     "location": "uri",
                     "description": "Publisher (group) id",
                     "required": true
+                }
+            }
+        },
+        "PackageSearch": {
+            "httpMethod": "GET",
+            "uri": "action/package_search",
+            "summary": "Searches for packages satisfying a given search criteria.\n This action accepts solr search query parameters (details below), and returns a dictionary of results, including dictized datasets that match the search criteria, a search count and also facet information.",
+            "responseClass": "PackageSearchResult",
+            "parameters": {
+                "q": {
+                    "location": "query",
+                    "description": "The solr query. Optional. Default: \"*:*\"",
+                    "required": false
+                },
+                "fq": {
+                    "location": "query",
+                    "description": "The facet query passed to SoLR.",
+                    "required": false
+                }
+            }
+        },
+        "PackageCreate": {
+            "httpMethod": "POST",
+            "uri": "action/package_create",
+            "summary": "Creates a CKAN Package given a JSON package defintion.",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
+                }
+            }
+        },
+        "PackageUpdate": {
+            "httpMethod": "POST",
+            "uri": "action/package_update",
+            "summary": "Updates a CKAN Pacakage.",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
+                }
+            }
+        },
+        "PackageDelete": {
+            "httpMethod": "POST",
+            "uri": "action/package_delete",
+            "summary": "Deletes a CKAN Pacakage given and Id/Name.",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "id": {
+                    "location": "postField"
+                }
+            }
+        },
+        "ResourceCreate": {
+            "httpMethod": "POST",
+            "uri": "action/resource_create",
+            "summary": "Creates a CKAN resource and associates it with a package",
+            "responseClass": "CkanApiOutput",
+            "parameters": {
+                "data": {
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
+                }
+            }
+        },
+        "ResourceSearch":{
+            "httpMethod": "GET",
+            "uri": "action/resource_search",
+            "summary": "Search for a ckan resource.",
+            "response_class":"CkanApiOutput",
+            "parameters": {
+                "query":{
+                    "location": "query"
+                },
+                "order_by":{
+                    "location": "query"
+                },
+                "offset":{
+                    "location": "query"
+                },
+                "limit":{
+                    "location":"query"
+                }
+            }
+        },
+        "ResourceUpdate": {
+            "httpMethod": "post",
+            "uri": "action/resource_update",
+            "summary": "Update a ckan resource.",
+            "response_class":"CkanApiOutput",
+            "parameters": {
+                "data":{
+                    "location": "body"
+                },
+                "content-type": {
+                    "location": "header",
+                    "static": true,
+                    "required" : true,
+                    "default" : "application/json",
+                    "sentAs" : "Content-Type"
                 }
             }
         }
@@ -170,6 +297,16 @@
                 }
             }
         },
+        "GetIssuesOutput": {
+            "type": "object",
+            "properties": {
+                "issues": {
+                    "description": "List of issues as a JSON document",
+                    "type": "string",
+                    "location": "json"
+                }
+            }
+        },
         "GetUserOutput": {
             "type": "object",
             "properties": {
@@ -198,7 +335,7 @@
                 }
             }
         },
- 	"GetRevisionsOutput": {
+ 	    "GetRevisionsOutput": {
             "type": "object",
             "properties": {
                 "id": {
@@ -215,7 +352,123 @@
                     "type": "string"
                 }
             }
-        }
+        },
+        "PackageSearchResult": {
+            "type": "object",
+            "properties": {
+                "help": {
+                    "location": "json",
+                    "type": "string"
+                },
+                "success": {
+                    "location": "json",
+                    "type": "boolean"
+                },
+                "result": {
+                    "count": {
+                        "location": "json",
+                        "type": "int"
+                    },
+                    "results": {
+                        "location": "json",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "owner_org": {
+                                    "type": "string"
+                                },
+                                "resources": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "CkanPackage": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type" : "string"
+                },
+                "title": {
+                    "type" : "string"
+                },
+                "owner_org": {
+                    "type" : "string"
+                },
+                "license_id": {
+                    "type" : "string"
+                },
+                "notes": {
+                    "type" : "string"
+                },
+                "tags": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type" : "string"
+                        }
+                    }
+                },
+                "extras": {
+                    "type": "object",
+                    "properties": {
+                        "key": {
+                            "type" : "string"
+                        },
+                        "value": {
+                            "type" : "string"
+                        }
+                    }
+                }
 
+            }
+        },
+        "CkanApiOutput":{
+            "type": "object",
+            "properties": {
+                "help": {
+                    "type": "string",
+                    "location": "json"
+                },
+                "success": {
+                    "type": "boolean",
+                    "location": "json"
+                },
+                "result":{
+                    "type": "object",
+                    "location": "json"
+                }
+            }
+        },
+        "CkanResource": {
+            "type": "object",
+            "properties": {
+                "package_id": {
+                    "type" : "string"
+                },
+                "date": {
+                    "type" : "string"
+                },
+                "description": {
+                    "type" : "string"
+                },
+                "url": {
+                    "type" : "string"
+                },
+                "format": {
+                    "type" : "string"
+                }
+            }
+        }
     }
 }
