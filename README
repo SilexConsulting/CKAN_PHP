@@ -1,6 +1,6 @@
 CKAN API PHP Client
 
-External libraries are required to use the CKAN client.  This software uses composer http://getcomposer.org/ to install and manage dependencies.
+Loads of External libraries are required to use the CKAN client.  This software uses composer http://getcomposer.org/ to install and manage dependencies.
 
 1) Composer is required to install all the dependencies.  To install composer, you need to run:
 	curl http://getcomposer.org/installer | php 
